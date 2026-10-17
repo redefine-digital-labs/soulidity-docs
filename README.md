@@ -2,7 +2,9 @@
 
 **Create Once. Live Across Worlds.**
 
-Updated September 6, 2026.
+Architecture direction updated October 17, 2026. The development-status table below retains its September 6, 2026 historical snapshot.
+
+Read the [Whitepaper draft](WHITEPAPER.md), and [implementation status dated October 17](IMPLEMENTATION_STATUS_20261017.md) for the current modular architecture, independent user journeys, problem research, technical rationale and delivery requirements. The [journey and composability specification](JOURNEYS_AND_COMPOSABILITY.md) covers all 37 retained checkpoints and third-party integration boundaries; the [review record](WHITEPAPER_REVIEW_20261017.md) explains the publication review. All publication files in this revision are in English.
 
 Soulidity is an ecosystem for creating, owning, using, and playing with persistent digital characters. It connects character creation, identity and content infrastructure, desktop companionship, a fully onchain game engine, and a growing family of games.
 
@@ -33,7 +35,9 @@ The current onchain implementation uses Sui and Move, with Walrus for content st
 
 ## Animacraft: create characters
 
-Creators build reusable Character Makers from layered images, colors, and composition rules. Users create original characters within those rules and continue toward Soulidity's single canonical Soul mint. A **Maker** is a product object; a **Creator** is the person who authors it.
+Creators build reusable Character Makers from layered images, colors, and composition rules. Users create original characters within those rules and issue a standard Soul through the applicable producer contract. A **Maker** is a product object; a **Creator** is the person who authors it. Maker issuance is one entrance: direct Native creation, independent producers and existing compatible Souls join the same downstream management and use lifecycle without requiring Animacraft.
+
+The whitepaper distinguishes Picrew and NEKA playable authoring systems from Toyhouse character records, credits and handover. Animacraft covers the author and player sides of a Maker; Soulidity covers continuing identity and management. A project, recipe, image output, Soul and runtime instance are different saved objects. Users can stop at local creation or character management; public contracts connect optional subsequent products. See [product research and references](WHITEPAPER.md#21-research-scope-and-existing-approaches). Reference products are research comparisons, not claimed integrations.
 
 The current editing model is **Maker → Part → Item → Style**. Makers can include character descriptions, initial memories, and skills documentation. Versions and Expansion Packs provide a way to extend content while preserving the assets, rules, and provenance of published releases.
 
@@ -106,14 +110,14 @@ The first planned stage uses non-withdrawable Life Credits in a replayable simul
 
 ## How the ecosystem fits together
 
-1. Creators publish Makers through Animacraft.
-2. Users compose characters and enter the canonical Soul creation flow.
-3. Soulidity provides identity, content, and permission interfaces.
-4. SoulDesk and games use those interfaces within their own runtime boundaries.
-5. Games contribute verifiable outcomes where their integrations support them.
-6. Creators expand the ecosystem with additional content and experiences.
+1. Users can directly create a Soul, receive or purchase an existing compatible Soul, or use an independent producer.
+2. Maker authoring, publication and character composition provide another optional entrance. Editable projects, releases, channel enrollment and final issuance complete separately.
+3. Soulidity or compatible third-party clients manage the same identity, content, components and action-scoped permissions.
+4. SoulDesk, Agent runtimes and games consume only the interfaces and rights needed for their own experiences.
+5. Markets, channels and community services are optional. Each governs its own rules and does not become an ecosystem-wide asset gate.
+6. Users can stop at useful results, resume original work and replace compatible tools; applications contribute history only through verified outcome paths.
 
-This is the intended ecosystem journey. The products have different levels of readiness, and not every connection is active in production.
+These are target journeys with independent entrances and continuation boundaries. Products have different readiness levels; not every connection is active in production. First-party products must use public contracts that independent developers can also consume.
 
 Games can share Soul identity and reuse engine capabilities where useful while retaining independent rules and state. No game is assumed to inherit another game's inventory, economy, or authority merely because both use a Soul.
 
